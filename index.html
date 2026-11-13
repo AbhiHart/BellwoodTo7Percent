@@ -1,0 +1,526 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Bellwood to 7%</title><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body><title>Bellwood to 7%</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Project Silver: the board's decision room for Bellwood Health System's path from 4% to a 7% operating margin inside a $35M cap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: desktop-first "decision room". Full-bleed film, then the board's three asks as huge type, then a sticky left rail of the five board questions with one distinct interactive exhibit each, then the simulator and the proof. Single light theme by choice: a cartographic palette matching the map film. */
+:root{
+  --ink:#F4F6F8; --ink2:#EAEEF2; --panel:#FFFFFF; --panel2:#F1F4F7; --line:#DCE2E8;
+  --text:#1B2430; --muted:#5B6878; --dim:#94A0AD;
+  --mint:#0E9F87; --amber:#C98204; --coral:#D9472F; --slate:#5B6878;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --max:1280px; color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.015em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--mint)}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+
+/* top bar */
+.bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.bar.solid{background:rgba(244,246,248,.88);backdrop-filter:saturate(1.4) blur(16px);border-color:var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:28px;height:60px}
+.brand{font-family:var(--f-display);font-weight:800;font-size:19px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(14,159,135,.16)}
+.bar nav{margin-left:auto;display:flex;gap:24px;font-size:14px}
+.bar nav a{color:var(--muted);text-decoration:none}.bar nav a:hover{color:var(--text)}
+.bar .cta{background:var(--text);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px;text-decoration:none}
+
+/* film: framed cinema player */
+.film{position:relative;padding:96px 0 34px;background:radial-gradient(ellipse at 50% 0%,#fff 0%,var(--ink) 70%)}
+.film-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;width:var(--fw);margin:0 auto 18px}
+.film-head h1{font-size:clamp(28px,2.6vw,40px);font-weight:800;line-height:1.05}
+.film-head .eyebrow{margin-bottom:8px;color:var(--mint)}
+.film-head .meta{font-family:var(--f-mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.film{--fw:min(calc(100vw - 80px),1480px,calc((100vh - 230px)*16/9))}
+.frame{position:relative;width:var(--fw);margin:0 auto;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#EEF1F4;border:1px solid var(--line);box-shadow:0 2px 0 rgba(255,255,255,.8) inset,0 40px 90px -30px rgba(27,36,48,.35),0 12px 30px -12px rgba(27,36,48,.18)}
+.frame video{display:block;width:100%;height:100%;object-fit:contain;background:#EEF1F4}
+.frame .ctl{transition:opacity .35s;position:absolute;left:0;right:0;bottom:0;padding:22px 26px;display:flex;align-items:center;gap:16px;background:linear-gradient(transparent,rgba(244,246,248,.94))}
+.frame.playing .ctl{opacity:0}.frame.playing:hover .ctl,.frame.playing:focus-within .ctl,.frame.playing.wake .ctl{opacity:1}
+.frame.playing{cursor:none}.frame.playing:hover,.frame.playing.wake{cursor:auto}
+.play{background:var(--text);color:var(--ink);border-radius:999px;padding:10px 20px;font-weight:600;font-size:14px;white-space:nowrap}
+.icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);font-size:16px;color:var(--text)}
+.seek{flex:1;height:5px;border-radius:3px;background:rgba(27,36,48,.15);position:relative;cursor:pointer}
+.seek i{position:absolute;inset:0 auto 0 0;background:var(--mint);border-radius:3px}
+.time{font-family:var(--f-mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.start{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(rgba(244,246,248,.15),rgba(244,246,248,.55));transition:opacity .45s;z-index:2}
+.start.gone{opacity:0;pointer-events:none}
+.frame.fresh .ctl{opacity:0;pointer-events:none}
+.start-card{display:grid;justify-items:center;gap:14px;text-align:center}
+.bigplay{width:112px;height:112px;border-radius:50%;background:var(--text);color:#fff;font-size:34px;display:grid;place-items:center;padding-left:8px;box-shadow:0 0 0 14px rgba(27,36,48,.08),0 24px 50px -12px rgba(27,36,48,.5);transition:transform .25s}
+.bigplay:hover{transform:scale(1.06)}
+.start-card b{font-family:var(--f-display);font-size:24px;font-weight:800;background:rgba(255,255,255,.92);padding:6px 16px;border-radius:12px}
+.start-card span{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.85);padding:4px 12px;border-radius:999px}
+.start-card .alt{font-family:var(--f-body);letter-spacing:0;text-transform:none;font-size:14px;color:var(--text);text-decoration:underline;background:none;padding:0}
+.endcard{position:absolute;inset:0;display:none;place-items:center;background:rgba(244,246,248,.72);backdrop-filter:blur(4px);z-index:2}
+.frame.ended .endcard{display:grid}
+.endcard div{display:flex;gap:12px}
+.endcard a,.endcard button{border-radius:999px;padding:12px 22px;font-weight:600;text-decoration:none;font-size:15px}
+.endcard button{background:var(--panel);border:1px solid var(--line)}.endcard a{background:var(--text);color:#fff}
+.chapters{display:flex;gap:6px;flex-wrap:wrap;width:var(--fw);margin:18px auto 0}
+.chapters button{font-size:12.5px;color:var(--muted);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel)}
+.chapters button.on{background:var(--mint);color:#fff;border-color:var(--mint)}
+.frame:fullscreen{width:100vw;height:100vh;border-radius:0;border:0;aspect-ratio:auto;background:#EEF1F4}
+.frame:-webkit-full-screen{width:100vw;height:100vh;border-radius:0;border:0}
+
+/* the three asks */
+.asks{padding-block:150px 130px;background-image:radial-gradient(circle at 1px 1px,rgba(27,36,48,.09) 1px,transparent 0);background-size:28px 28px}
+.asks .lede{font-family:var(--f-display);font-weight:800;font-size:clamp(46px,5.4vw,84px);line-height:1.02;max-width:17ch}
+.asks .lede span{color:var(--mint)}
+.asks .sub{max-width:62ch;color:var(--muted);font-size:20px;margin-top:26px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:90px;border-top:1px solid var(--line)}
+.three > div{padding:34px 34px 10px 0}
+.three > div + div{padding-left:34px;border-left:1px solid var(--line)}
+.three b{display:block;font-family:var(--f-display);font-size:68px;font-weight:800;line-height:1;margin:14px 0 14px}
+.three p{color:var(--muted);margin:0}
+
+/* explorer: sticky rail + exhibits */
+.explorer{border-top:1px solid var(--line)}
+.ex-grid{display:block}
+.rail{position:sticky;top:60px;z-index:30;margin:0 calc(-1*max(40px,env(safe-area-inset-left,0px)));padding:12px max(40px,env(safe-area-inset-left,0px));background:rgba(244,246,248,.92);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px}
+.rail .eyebrow{white-space:nowrap;font-size:11.5px}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;flex:1;min-width:0}
+.rail a{display:flex;gap:8px;align-items:baseline;padding:8px 12px;border-radius:12px;color:var(--muted);text-decoration:none;transition:background .2s,color .2s}
+.rail a b{font-family:var(--f-mono);font-size:13px}
+.rail a span{font-size:13.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.rail a.on{background:var(--panel);color:var(--text);box-shadow:0 0 0 1px var(--line)}
+.rail a.on b{color:var(--mint)}
+.exhibits{padding-block:80px 40px;display:grid;gap:140px;min-width:0}
+.ex h2{font-size:clamp(34px,3.4vw,52px);font-weight:800;line-height:1.05;max-width:20ch;margin:10px 0 16px}
+.ex .intro{color:var(--muted);max-width:60ch;margin:0 0 34px;font-size:18px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;min-width:0;box-shadow:0 1px 2px rgba(27,36,48,.04),0 12px 32px rgba(27,36,48,.05)}
+.panel + .panel{margin-top:18px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.note{color:var(--muted);font-size:13.5px;margin-top:12px}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.kpi div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+.kpi b{display:block;font-family:var(--f-display);font-size:40px;font-weight:800;line-height:1.05}
+.kpi small{color:var(--muted);font-size:14px}
+
+/* Q1 heat grid */
+.heat{width:100%;border-collapse:separate;border-spacing:6px;font-size:14px}
+.heat th{font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--muted);text-align:center;padding:4px 6px;letter-spacing:.04em}
+.heat th.row{text-align:left;font-family:var(--f-body);font-size:15px;color:var(--text);font-weight:600;white-space:nowrap;padding-right:10px}
+.heat th.row small{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+.heat td{height:58px;border-radius:10px;text-align:center;font-family:var(--f-mono);font-weight:700;font-size:16px;color:var(--text)}
+.heat td.na{background:var(--ink2);color:var(--dim);font-weight:500;font-size:13px}
+.heat td.pr{font-family:var(--f-body);font-weight:500;font-size:13.5px;color:var(--text);background:var(--panel2);text-align:left;padding:8px 14px;min-width:250px;line-height:1.35}
+.heat td.pr em{font-style:normal;color:var(--mint)}
+.heat td.pr em.pro{color:var(--amber)}
+
+/* Q2 break-even calculator */
+.calc{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+.calc label{display:grid;gap:8px;font-size:15px;margin-bottom:22px}
+.calc .row{display:flex;justify-content:space-between}
+.calc .row span:last-child{font-family:var(--f-mono);color:var(--mint)}
+input[type=range]{width:100%;accent-color:var(--mint)}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+.seg button{flex:1;padding:8px 10px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.verdict{margin-top:18px;padding:16px 18px;border-radius:14px;font-weight:600}
+.verdict.no{background:rgba(217,71,47,.08);color:var(--coral);border:1px solid rgba(217,71,47,.3)}
+.verdict.yes{background:rgba(14,159,135,.08);color:var(--mint);border:1px solid rgba(14,159,135,.3)}
+#beChart,#aiChart,#ganttChart,#simChart{width:100%;height:auto;display:block}
+canvas{max-width:100%}
+.ex{scroll-margin-top:150px}
+.calc>*,.simgrid>*,.cols>*,.ex-grid>*,.ex{min-width:0}
+
+/* Q4 sensitivity board */
+.sens{width:100%;border-collapse:collapse;font-size:15px}
+.sens th,.sens td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left}
+.sens th{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.pill{display:inline-block;font-family:var(--f-mono);font-weight:700;font-size:14px;padding:5px 12px;border-radius:999px}
+.pill.g{background:rgba(14,159,135,.12);color:var(--mint)}.pill.a{background:rgba(201,130,4,.12);color:var(--amber)}.pill.r{background:rgba(217,71,47,.12);color:var(--coral)}
+.bridge{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;align-items:end;height:260px;margin-top:10px}
+.bridge div{position:relative;border-radius:6px 6px 2px 2px}
+.bridge div span{position:absolute;top:-24px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:13px;color:var(--text)}
+.bridge-l{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-top:10px;font-size:12.5px;color:var(--muted);text-align:center}
+
+/* simulator */
+.sim{padding-block:120px;border-top:1px solid var(--line)}
+.simgrid{display:grid;grid-template-columns:380px 1fr;gap:40px;align-items:start;margin-top:40px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.presets button{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;background:var(--panel)}
+.presets button[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+.ctrl{display:grid;gap:20px}
+.ctrl label{display:grid;gap:6px;font-size:15px}
+.ctrl .row{display:flex;justify-content:space-between;gap:10px}
+.ctrl .row span:last-child{font-family:var(--f-mono);color:var(--mint)}
+.ctrl small{color:var(--muted);font-size:13px}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px}
+.tg small{display:block;color:var(--muted);font-size:13px}
+.sw{position:relative;width:48px;height:28px;flex:0 0 auto}
+.sw input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.sw i{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:background .2s}
+.sw i::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(27,36,48,.3);transition:transform .2s}
+.sw input:checked+i{background:var(--mint)}
+.sw input:checked+i::after{transform:translateX(20px)}
+.sw input:focus-visible+i{outline:2px solid var(--mint);outline-offset:2px}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.readout div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.readout small{display:block;color:var(--muted);font-size:13px}
+.readout b{font-family:var(--f-display);font-size:38px;font-weight:800;line-height:1.1}
+.readout .hit{color:var(--mint)}.readout .miss{color:var(--coral)}
+
+/* safeguards + proof */
+.guards{padding-block:120px;border-top:1px solid var(--line)}
+.g6{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:48px}
+.g6 div{background:var(--ink);padding:30px}
+.g6 h3{font-size:22px;margin:0 0 10px}
+.g6 p{color:var(--muted);margin:0;font-size:15.5px}
+footer{padding-block:60px 80px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr;gap:48px}
+
+@media (max-width:1060px){
+  .ex-grid,.calc,.simgrid,.cols{grid-template-columns:1fr}
+  .rail{flex-wrap:wrap}.rail ol{grid-template-columns:repeat(5,auto)}
+  .three,.g6,.kpi,.readout{grid-template-columns:1fr}
+  .three > div + div{border-left:0;padding-left:0;border-top:1px solid var(--line)}
+  .bar nav{display:none}
+  .scrollx{overflow-x:auto}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+<header class="bar" id="bar">
+  <div class="wrap">
+    <div class="brand"><i aria-hidden="true"></i>Bellwood to 7%</div>
+    <nav aria-label="Sections"><a href="#asks">The asks</a><a href="#q1">Five questions</a><a href="#simulate">Simulator</a><a href="#guards">Safeguards</a></nav>
+    <a class="cta" href="#simulate">Stress-test it</a>
+  </div>
+</header>
+
+<!-- FILM -->
+<section class="film" id="film" aria-label="Film">
+  <div class="film-head">
+    <div><div class="eyebrow">The film · 1 min 26 s · sound on</div><h1>Bellwood to 7%, in six scenes</h1></div>
+    <div class="meta">Best watched full screen ⤢</div>
+  </div>
+  <div class="frame fresh" id="frame">
+    <video id="vid" src="bellwood-film.mp4" poster="poster.jpg" playsinline preload="auto" aria-label="86-second film flying across a map of the Bellwood region"></video>
+    <div class="start" id="start">
+      <div class="start-card">
+        <button class="bigplay" id="bigplay" type="button" aria-label="Watch the film full screen with sound">▶</button>
+        <b>Watch the film</b>
+        <span>Full screen · with music · 1:26</span>
+        <button class="alt" id="inline" type="button">or play it here in the frame</button>
+      </div>
+    </div>
+    <div class="endcard"><div><button type="button" id="replay">↺ Replay</button><a href="#asks" id="cont">Continue to the decision ↓</a></div></div>
+    <div class="ctl">
+      <button class="play" id="play" type="button">▶ Play</button>
+      <div class="seek" id="seek" role="slider" tabindex="0" aria-label="Film position" aria-valuemin="0" aria-valuemax="86" aria-valuenow="0"><i id="seekI"></i></div>
+      <span class="time" id="time">0:00 / 1:26</span>
+      <button class="icon" id="mute" type="button" aria-label="Mute">🔊</button>
+      <button class="icon" id="fs" type="button" aria-label="Full screen">⤢</button>
+    </div>
+  </div>
+  <div class="chapters" id="chapters" aria-label="Film chapters"></div>
+</section>
+
+<!-- THE ASKS -->
+<section class="asks" id="asks">
+  <div class="wrap">
+    <div class="eyebrow">What we ask the board to approve today</div>
+    <p class="lede">Fund the plan. Commit below it. <span>Decide twice.</span></p>
+    <p class="sub">The film shows why Bellwood is stuck at 4% and how it gets to 7%. This page is the decision: what the board approves, what each of its five questions is answered with, and what it can stress-test before it votes.</p>
+    <div class="three">
+      <div><div class="eyebrow">1 · Fund</div><b>$32.1M</b><p>Horizon 1 and second-wave preparation, including a 10% contingency, plus a $1.0M reserve. $1.9M of the $35M cap stays unspent.</p></div>
+      <div><div class="eyebrow">2 · Commit</div><b>5.6% · 6.0%</b><p>Board floors at months 18 and 24, set below a plan that delivers 6.0% and 6.3%. The Audit Committee, not management, re-bases them after month 2.</p></div>
+      <div><div class="eyebrow">3 · Decide</div><b>M9 · M12</b><p>The second wave at month 9 (payer renewals, ED and OR flow, length-of-stay scale-up). Priced board options at month 12. 7% run-rate in month 27.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORER -->
+<section class="explorer">
+  <div class="wrap ex-grid">
+    <aside class="rail" aria-label="The board's five questions">
+      <div class="eyebrow">The board's five questions</div>
+      <ol id="rail">
+        <li><a href="#q1"><b>Q1</b><span>Segments first</span></a></li>
+        <li><a href="#q2"><b>Q2</b><span>Where to grow</span></a></li>
+        <li><a href="#q3"><b>Q3</b><span>Which AI to fund</span></a></li>
+        <li><a href="#q4"><b>Q4</b><span>What it is worth</span></a></li>
+        <li><a href="#q5"><b>Q5</b><span>How we run it</span></a></li>
+      </ol>
+    </aside>
+
+    <div class="exhibits">
+      <!-- Q1 -->
+      <article class="ex" id="q1">
+        <div class="eyebrow">Q1 · Segments and needs</div>
+        <h2>Fix what each segment says it values, in the order the money flows.</h2>
+        <p class="intro">Survey shares are the percentage choosing each need in their top two (case surveys, n=200 per patient group, n=100 referrers). Referrers come first because one referring practice sends hundreds of patients.</p>
+        <div class="panel scrollx">
+          <table class="heat" id="heat"></table>
+        </div>
+        <div class="kpi">
+          <div><b style="color:var(--mint)">42% → 20%</b><small>referrers reporting booking difficulty</small></div>
+          <div><b style="color:var(--mint)">36% → 12%</b><small>referrers reporting follow-up gaps</small></div>
+          <div><b style="color:var(--amber)">&lt;14 days</b><small>core ortho wait before any referrer push</small></div>
+        </div>
+      </article>
+
+      <!-- Q2 -->
+      <article class="ex" id="q2">
+        <div class="eyebrow">Q2 · Growth and footprint</div>
+        <h2>The neighbor-metro clinic doesn't pay. Drag the slider and see why.</h2>
+        <p class="intro">A $12–18M clinic adds $3–5M a year of fixed cost. At the case's own economics it needs more extra patients than both of Bellwood's ortho clinics see today. We fund a virtual front door and visiting surgeons instead, and win back the 31,500 referrals a year already lost at home.</p>
+        <div class="panel calc">
+          <div>
+            <label for="nRef"><span class="row"><span>Extra neighbor referrals a year</span><span id="nRefV">3,600</span></span><input type="range" id="nRef" min="0" max="30000" step="600" value="3600"><small style="color:var(--muted)">Bellwood gets 7,200 of 180,000 today (4%). +3,600 is a 2-point share gain.</small></label>
+            <div class="eyebrow" style="margin-bottom:8px">Value per episode</div>
+            <div class="seg" role="group" aria-label="Value per episode"><button type="button" id="eCase" aria-pressed="true">Case: $600</button><button type="button" id="eLine" aria-pressed="false">If ortho value holds: $8.2k</button></div>
+            <div class="verdict no" id="verdict">Loses money</div>
+            <p class="note">65% of referrals become episodes (case funnel). Clinic cost to cover: $5.4–8.6M a year ($3–5M fixed plus $12–18M capital over 5 years).</p>
+          </div>
+          <canvas id="beChart" width="1200" height="640" role="img" aria-label="Contribution from extra neighbor referrals against the clinic's annual cost"></canvas>
+        </div>
+        <div class="cols" style="margin-top:18px">
+          <div class="panel"><div class="eyebrow">Inside 18 months</div><p style="margin:10px 0 0">No new sites, no closures, no service-line exits. The suburban ortho clinic becomes the musculoskeletal hub using its idle 30% of slots; urgent cases keep protected core slots.</p></div>
+          <div class="panel"><div class="eyebrow">Month-12 option</div><p style="margin:10px 0 0">Consolidate 2 subscale clinics into hubs, only if 90% of affected patients gain no more than 15 minutes of travel and keep their clinicians. Worth $1.7–4M a year.</p></div>
+        </div>
+      </article>
+
+      <!-- Q3 -->
+      <article class="ex" id="q3">
+        <div class="eyebrow">Q3 · AI and automation</div>
+        <h2>Fund what is proven. Pay for the rest on results. Refuse two uses outright.</h2>
+        <p class="intro">Each use is placed by its value inside 18 months and the strength of the evidence behind it. Bubble size is its cost. About $3.3M of AI spend lands inside the window.</p>
+        <div class="panel"><canvas id="aiChart" width="1400" height="760" role="img" aria-label="AI uses placed by value and evidence"></canvas><p class="note">Placement is the team's judgment from the case pilot and benchmarks, not a measured score.</p></div>
+        <div class="cols" style="margin-top:18px">
+          <div class="panel"><div class="eyebrow">Guardrails on every model</div><p style="margin:10px 0 0">AI never lowers a patient's urgency. A nurse reviews a 5% weekly sample of "routine" referrals. Go-live needs 98% sensitivity with no subgroup gap above 3 points. Every model has a kill switch.</p></div>
+          <div class="panel"><div class="eyebrow">AI scheduling, $5.0M</div><p style="margin:10px 0 0">Half the fee is paid on outcomes. Rolled out by clinic group from month 13; if group 1 hasn't lifted booking by 2 points by month 16, the second tranche is cancelled.</p></div>
+        </div>
+      </article>
+
+      <!-- Q4 -->
+      <article class="ex" id="q4">
+        <div class="eyebrow">Q4 · Value and certainty</div>
+        <h2>$57.2M by month 18, and the honest list of what could move the date.</h2>
+        <p class="intro">Every dollar is counted once, net of the cost of running the program. About 80% of it is sized from benchmarks until the month-2 validation sprint re-bases it; the case-data-only floor is 4.2%.</p>
+        <div class="panel">
+          <div class="eyebrow">Horizon 1 at month 18, $M</div>
+          <div class="bridge" id="bridge"></div>
+          <div class="bridge-l"><span>Underlying</span><span>Workforce</span><span>Front door</span><span>Integrity</span><span>Overhead</span><span>Ortho, index</span><span>Program cost</span><span>Horizon 1 · 6.0%</span></div>
+        </div>
+        <div class="panel scrollx">
+          <table class="sens"><tr><th>If this happens</th><th>Month-18 margin</th><th>7% with H1 + H2</th><th>7% with board options</th></tr>
+            <tr><td>Base plan</td><td class="mono">6.2%</td><td><span class="pill g">Month 27</span></td><td><span class="pill g">Month 24</span></td></tr>
+            <tr><td>Every lever lands 3 months late</td><td class="mono">5.8%</td><td><span class="pill g">Month 28</span></td><td><span class="pill g">Month 26</span></td></tr>
+            <tr><td>Payer renewals win nothing</td><td class="mono">6.1%</td><td><span class="pill a">6.9% peak</span></td><td><span class="pill g">Month 26</span></td></tr>
+            <tr><td>Cost erosion reaches $15M</td><td class="mono">6.0%</td><td><span class="pill a">6.8% peak</span></td><td><span class="pill g">Month 28</span></td></tr>
+            <tr><td>Benchmark savings come in at 60%</td><td class="mono">5.5%</td><td><span class="pill a">6.3% peak</span></td><td><span class="pill a">Month 42</span></td></tr>
+            <tr><td>Everything goes wrong at once</td><td class="mono">4.5%</td><td><span class="pill r">Not reached</span></td><td><span class="pill r">Floor reset by Audit Committee</span></td></tr></table>
+        </div>
+      </article>
+
+      <!-- Q5 -->
+      <article class="ex" id="q5">
+        <div class="eyebrow">Q5 · Roadmap and governance</div>
+        <h2>Capacity before intake, two changes per clinic per quarter, and gates the board can see.</h2>
+        <p class="intro">Bars show when each workstream is live. Amber diamonds are the board's decision gates. Performance work is never paused to fund growth; extra growth spend is released only when savings beat the floor.</p>
+        <div class="panel scrollx"><canvas id="ganttChart" width="1500" height="720" role="img" aria-label="18-month roadmap by workstream with decision gates"></canvas></div>
+        <div class="kpi">
+          <div><b>Green</b><small>A 1-month slip stays green on the trigger ladder</small></div>
+          <div><b style="color:var(--amber)">Amber</b><small>0.30 points below the glide path from month 9</small></div>
+          <div><b style="color:var(--coral)">Red</b><small>0.50 points below twice: the Audit Committee resets the floor</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section class="sim" id="simulate">
+  <div class="wrap">
+    <div class="eyebrow">Before you vote</div>
+    <h2 style="font-size:clamp(40px,4.6vw,68px);font-weight:800;line-height:1.03;max-width:18ch;margin-top:10px">Stress-test the plan yourself.</h2>
+    <p style="color:var(--muted);max-width:60ch;font-size:18px;margin-top:16px">A simplified replica of the planning model, within about 0.2 points of it. Pick a scenario or move the levers.</p>
+    <div class="simgrid">
+      <div>
+        <div class="presets" id="presets" role="group" aria-label="Scenarios">
+          <button type="button" data-p="base" aria-pressed="true">Base</button><button type="button" data-p="slip">3-month slip</button><button type="button" data-p="bench">Benchmarks at 60%</button><button type="button" data-p="erosion">Erosion $15M</button><button type="button" data-p="payer">No payer lever</button><button type="button" data-p="down">Downside</button>
+        </div>
+        <div class="ctrl">
+          <label for="kBench"><span class="row"><span>Benchmark-sized savings realized</span><span id="vBench">100%</span></span><input type="range" id="kBench" min="30" max="120" step="5" value="100"><small>Re-based by the month-2 validation sprint.</small></label>
+          <label for="kEro"><span class="row"><span>Cost erosion by month 18</span><span id="vEro">$8M</span></span><input type="range" id="kEro" min="4" max="16" step="1" value="8"><small>Wage and price squeeze, kept gross; it keeps growing after month 18.</small></label>
+          <label for="kSlip"><span class="row"><span>Delivery slip</span><span id="vSlip">0 months</span></span><input type="range" id="kSlip" min="0" max="6" step="1" value="0"><small>Every program lever lands this many months late.</small></label>
+          <div class="tg"><div>Payer renewals with a value pack<small>Counted only when contracts are signed</small></div><span class="sw"><input type="checkbox" id="kPayer" checked aria-label="Payer renewals"><i></i></span></div>
+          <div class="tg"><div>Board options: productivity and footprint<small>Decided at month 12, paid from savings</small></div><span class="sw"><input type="checkbox" id="kOpt" aria-label="Board options"><i></i></span></div>
+          <div class="tg"><div>Month-2 test confirms ortho value<small>About $27k per episode, not $1.5–2.5k</small></div><span class="sw"><input type="checkbox" id="kOrtho" aria-label="Ortho value confirmed"><i></i></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="readout"><div><small>Margin at month 18</small><b id="rM18">6.2%</b></div><div><small>Margin at month 30</small><b id="rM30">7.2%</b></div><div><small>7% reached</small><b id="r7" class="hit">M27</b></div></div>
+        <div class="panel" style="padding:12px"><canvas id="simChart" width="1400" height="800" role="img" aria-label="Margin path for the chosen scenario"></canvas></div>
+        <p class="note">Mint: this scenario. Dashed grey: base plan. Coral: do nothing. The amber ring marks the first month the run-rate reaches 7%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFEGUARDS -->
+<section class="guards" id="guards">
+  <div class="wrap">
+    <div class="eyebrow">Never traded for savings</div>
+    <h2 style="font-size:clamp(40px,4.6vw,68px);font-weight:800;line-height:1.03;max-width:18ch;margin-top:10px">Six safeguards sit above every number on this page.</h2>
+    <div class="g6">
+      <div><h3>Binding stop rule</h3><p>Same-day pause for serious harm, statistical stops by site, and an equity stop if any access gap widens by more than 20%. The lever owner can't resume it.</p></div>
+      <div><h3>Staffing floors</h3><p>Set by the nurse staffing committee. Agency requests auto-approve after 4 hours. Agency never falls below its FY23 level.</p></div>
+      <div><h3>No layoffs while vacancies exist</h3><p>Hiring freezes only per access wave. WARN and union steps for every wave and every consolidation.</p></div>
+      <div><h3>No perverse incentives</h3><p>Coding and documentation dollars are excluded from executive pay. The staffing vendor is never paid on total spend.</p></div>
+      <div><h3>AI never lowers urgency</h3><p>Nurse review of routine referrals, sensitivity and subgroup gates, outreach-only no-show prediction, a kill switch per model.</p></div>
+      <div><h3>Compliance by design</h3><p>Stark and Anti-Kickback structures for every physician arrangement, EMTALA screening before any redirect, 60-day overpayment refunds.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:var(--text)">How the plan was built.</b> 42 root-cause hypotheses ranked by five independent expert views; 303 solution options from 12 specialist reviews; a seven-member feasibility panel over two Delphi rounds; four versions attacked by a forensic financial audit, a clinical-legal review, an execution pre-mortem and a case judge. Every headline number is reproduced by the planning model.</div>
+    <div>Project Silver · Deloitte Capstone 2026. Bellwood and every figure about it are fictional, from the case package. Real companies are used only as reference points.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+const css=getComputedStyle(document.documentElement),C=n=>css.getPropertyValue(n).trim();
+const COL={ink:C('--ink'),panel:C('--panel'),line:C('--line'),text:C('--text'),muted:C('--muted'),dim:C('--dim'),mint:C('--mint'),amber:C('--amber'),coral:C('--coral'),slate:C('--slate')};
+const $=id=>document.getElementById(id),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* bar */
+const bar=$('bar');const onScroll=()=>{bar.classList.toggle('solid',scrollY>40);railCur()};addEventListener('scroll',onScroll,{passive:true});
+
+/* film */
+const vid=$('vid'),play=$('play'),frame=$('frame'),start=$('start');const CH=[['Today',0],['The problem',9],['Why: the leak',18.8],['Why: the bottleneck',30.8],['The tempting fix',42.8],['Our plan',56],['The result',68.2]];
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+const goFS=()=>{const f=frame.requestFullscreen||frame.webkitRequestFullscreen;if(f&&!fsEl()){try{const r=f.call(frame);if(r&&r.catch)r.catch(()=>{})}catch(e){}}};
+const exitFS=()=>{const f=document.exitFullscreen||document.webkitExitFullscreen;if(f&&fsEl())f.call(document)};
+let userPaused=false;
+function begin(full){start.classList.add('gone');frame.classList.remove('fresh');frame.classList.remove('ended');vid.muted=false;if(vid.ended||vid.currentTime>vid.duration-0.5)vid.currentTime=0;if(full)goFS();vid.play().catch(()=>{vid.muted=true;vid.play()})}
+$('bigplay').addEventListener('click',()=>begin(true));$('inline').addEventListener('click',()=>begin(false));
+const chs=$('chapters');CH.forEach(([n,t])=>{const b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',()=>{vid.currentTime=t;begin(false)});chs.appendChild(b)});
+const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+vid.addEventListener('timeupdate',()=>{const d=vid.duration||86;$('seekI').style.width=(vid.currentTime/d*100)+'%';$('seek').setAttribute('aria-valuenow',Math.round(vid.currentTime));$('time').textContent=fmt(vid.currentTime)+' / '+fmt(d);let ci=0;CH.forEach(([_,t],i)=>{if(vid.currentTime>=t)ci=i});[...chs.children].forEach((b,i)=>b.classList.toggle('on',i===ci))});
+vid.addEventListener('play',()=>{play.textContent='❚❚ Pause';frame.classList.add('playing');frame.classList.remove('ended');start.classList.add('gone')});
+vid.addEventListener('pause',()=>{play.textContent='▶ Play';frame.classList.remove('playing')});
+vid.addEventListener('ended',()=>{play.textContent='↺ Replay';frame.classList.remove('playing');frame.classList.add('ended');exitFS()});
+play.addEventListener('click',()=>{if(vid.paused){userPaused=false;begin(false)}else{userPaused=true;vid.pause()}});
+vid.addEventListener('click',()=>{if(vid.paused){userPaused=false;vid.play()}else{userPaused=true;vid.pause()}});
+$('replay').addEventListener('click',()=>{vid.currentTime=0;begin(!!fsEl())});
+$('cont').addEventListener('click',()=>exitFS());
+const muteB=$('mute');const syncMute=()=>{muteB.textContent=vid.muted?'🔇':'🔊';muteB.setAttribute('aria-label',vid.muted?'Unmute':'Mute')};vid.addEventListener('volumechange',syncMute);muteB.addEventListener('click',()=>{vid.muted=!vid.muted});syncMute();
+$('fs').addEventListener('click',()=>fsEl()?exitFS():goFS());
+document.addEventListener('fullscreenchange',()=>{$('fs').textContent=fsEl()?'⤡':'⤢'});
+let wakeT;frame.addEventListener('mousemove',()=>{frame.classList.add('wake');clearTimeout(wakeT);wakeT=setTimeout(()=>frame.classList.remove('wake'),1800)});
+$('seek').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();vid.currentTime=(e.clientX-r.left)/r.width*(vid.duration||86)});
+$('seek').addEventListener('keydown',e=>{if(e.key==='ArrowRight')vid.currentTime+=5;if(e.key==='ArrowLeft')vid.currentTime-=5});
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;const r=frame.getBoundingClientRect();if(!fsEl()&&(r.bottom<0||r.top>innerHeight))return;if(e.key===' '&&(fsEl()||!start.classList.contains('gone')||vid.currentTime>0)){if(fsEl()||document.activeElement===document.body){e.preventDefault();vid.paused?begin(!!fsEl()):vid.pause()}}if(e.key==='f'||e.key==='F'){fsEl()?exitFS():goFS()}if(e.key==='m'||e.key==='M')vid.muted=!vid.muted});
+/* pause as soon as the frame starts leaving the screen; resume if it comes back and the viewer had not paused */
+let autoPaused=false;
+if('IntersectionObserver'in window){new IntersectionObserver(es=>es.forEach(en=>{if(fsEl())return;if(en.intersectionRatio<.7&&!vid.paused){autoPaused=true;vid.pause()}else if(en.intersectionRatio>=.85&&autoPaused&&!userPaused&&!vid.ended){autoPaused=false;vid.play().catch(()=>{})}}),{threshold:[0,.5,.7,.85,1]}).observe(frame)}
+
+/* rail */
+const rl=[...document.querySelectorAll('#rail a')];function railCur(){let cur=rl[0];rl.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<innerHeight*.55)cur=a});rl.forEach(a=>a.classList.toggle('on',a===cur))}
+
+/* Q1 heat grid */
+const needs=['Easy booking','Closed loop','Expertise','Rapid access','Billing clarity','Convenient hours'];
+const segs=[['Independent referrers','~90,000 referrals/yr',[42,36,82,null,null,null],'Now','One referrer line; documented outcome for every referral'],
+ ['Ortho patients','$300M at 10%, +7%/yr',[null,null,78,62,null,null],'Capacity first','Same surgeons on both sites; APP and virtual follow-up'],
+ ['Other-specialty patients','$500M at 5%',[null,null,70,null,54,null],'Access wave 1','Plain statements, estimates, charity screening'],
+ ['Primary and urgent care','$400M at 1%',[null,null,null,58,null,66],'Protect','Scribe funds evening and weekend sessions']];
+const hcol=v=>{const k=clamp((v-30)/55,0,1);const a=[226,232,238],b=[96,206,184];return `rgb(${a.map((x,i)=>Math.round(x+(b[i]-x)*k)).join(',')})`};
+$('heat').innerHTML=`<tr><th></th>${needs.map(n=>`<th>${n}</th>`).join('')}<th style="text-align:left">Priority and action</th></tr>`+segs.map(([n,s,v,p,a])=>`<tr><th class="row">${n}<small>${s}</small></th>${v.map(x=>x==null?'<td class="na">—</td>':`<td style="background:${hcol(x)}">${x}%</td>`).join('')}<td class="pr"><em class="${p==='Protect'?'pro':''}">${p}.</em> ${a}</td></tr>`).join('');
+
+/* Q2 break-even */
+let eVal=600;const be=$('beChart'),bg=be.getContext('2d');
+function drawBE(){const n=+$('nRef').value;$('nRefV').textContent=n.toLocaleString();const w=be.width,h=be.height;bg.clearRect(0,0,w,h);
+  const l=110,r=w-60,t=50,b=h-80,maxX=30000,maxY=eVal>1000?60:20;const X=v=>l+(r-l)*v/maxX,Y=v=>b-(b-t)*v/maxY;
+  bg.font='500 22px "JetBrains Mono", monospace';bg.textBaseline='middle';
+  for(let v=0;v<=maxY;v+=maxY/4){bg.strokeStyle=COL.line;bg.beginPath();bg.moveTo(l,Y(v));bg.lineTo(r,Y(v));bg.stroke();bg.fillStyle=COL.muted;bg.textAlign='right';bg.fillText('$'+v+'M',l-14,Y(v))}
+  [0,10000,20000,30000].forEach(v=>{bg.textAlign='center';bg.fillStyle=COL.muted;bg.fillText((v/1000)+'k',X(v),b+32)});bg.fillText('extra referrals a year',(l+r)/2,b+64);
+  // cost band
+  bg.fillStyle='rgba(217,71,47,.10)';bg.fillRect(l,Y(8.6),r-l,Y(5.4)-Y(8.6));bg.strokeStyle=COL.coral;bg.setLineDash([10,8]);bg.lineWidth=2;[5.4,8.6].forEach(v=>{bg.beginPath();bg.moveTo(l,Y(v));bg.lineTo(r,Y(v));bg.stroke()});bg.setLineDash([]);
+  bg.fillStyle=COL.coral;bg.textAlign='left';bg.font='600 22px "Instrument Sans", sans-serif';bg.fillText('Clinic cost to cover: $5.4–8.6M a year',l+14,Y(8.6)-20);
+  // contribution line
+  const val=x=>x*0.65*eVal/1e6;bg.strokeStyle=COL.mint;bg.lineWidth=6;bg.beginPath();bg.moveTo(X(0),Y(0));bg.lineTo(X(maxX),Y(Math.min(maxY,val(maxX))));bg.stroke();
+  // today marker
+  const cv=val(n);bg.fillStyle=COL.mint;bg.beginPath();bg.arc(X(n),Y(Math.min(maxY,cv)),12,0,7);bg.fill();bg.font='700 24px "JetBrains Mono", monospace';bg.textAlign=n>22000?'right':'left';bg.fillText('$'+cv.toFixed(1)+'M',X(n)+(n>22000?-20:20),Y(Math.min(maxY,cv))-24);
+  // break-even marks
+  const be1=5.4e6/(0.65*eVal),be2=8.6e6/(0.65*eVal);bg.fillStyle='rgba(14,159,135,.10)';bg.fillRect(X(Math.min(maxX,be1)),t,Math.max(0,X(Math.min(maxX,be2))-X(Math.min(maxX,be1))),b-t);
+  const v=$('verdict');if(cv>=8.6){v.className='verdict yes';v.textContent='Covers the clinic: worth a gated decision'}else if(cv>=5.4){v.className='verdict no';v.textContent='Only covers the cheapest clinic case'}else{v.className='verdict no';v.textContent=`Loses $${(5.4-cv).toFixed(1)}–${(8.6-cv).toFixed(1)}M a year`}
+}
+$('nRef').addEventListener('input',drawBE);
+$('eCase').addEventListener('click',()=>{eVal=600;$('eCase').setAttribute('aria-pressed','true');$('eLine').setAttribute('aria-pressed','false');drawBE()});
+$('eLine').addEventListener('click',()=>{eVal=8200;$('eLine').setAttribute('aria-pressed','true');$('eCase').setAttribute('aria-pressed','false');drawBE()});
+
+/* Q3 AI bubbles */
+const AI=[['Primary-care scribe',.62,.82,.45,'Fund',COL.mint],['Revenue-cycle automation',.78,.7,.8,'Fund',COL.mint],['No-show outreach',.42,.66,.3,'Fund',COL.mint],['Ortho scribe pilot',.35,.45,.3,'Pilot',COL.amber],['AI scheduling (pay on outcomes)',.55,.38,5,'Phase',COL.amber],['Autonomous coding',.7,.16,1.5,'Refuse',COL.coral],['Voice AI on clinical calls',.3,.12,1,'Refuse',COL.coral]];
+function drawAI(){const c=$('aiChart'),g=c.getContext('2d'),w=c.width,h=c.height;g.clearRect(0,0,w,h);const l=120,r=w-60,t=40,b=h-90;const X=v=>l+(r-l)*v,Y=v=>b-(b-t)*v;
+  g.fillStyle='rgba(14,159,135,.05)';g.fillRect(X(.5),t,r-X(.5),Y(.5)-t);g.strokeStyle=COL.line;g.lineWidth=2;g.strokeRect(l,t,r-l,b-t);g.beginPath();g.moveTo(X(.5),t);g.lineTo(X(.5),b);g.moveTo(l,Y(.5));g.lineTo(r,Y(.5));g.stroke();
+  g.font='600 22px "JetBrains Mono", monospace';g.fillStyle=COL.muted;g.textAlign='center';g.fillText('Value inside 18 months →',(l+r)/2,b+56);g.save();g.translate(l-60,(t+b)/2);g.rotate(-Math.PI/2);g.fillText('Evidence behind it →',0,0);g.restore();
+  g.font='600 20px "Instrument Sans", sans-serif';g.fillStyle=COL.dim;g.textAlign='left';g.fillText('Proven and valuable: fund',X(.52),t+30);g.fillText('Unproven: pilot or pay on results',l+16,Y(.5)+30);g.fillText('Valuable but unsafe: refuse',X(.52),b-20);
+  AI.forEach(([n,x,y,cost,tag,col])=>{const rad=14+Math.sqrt(cost)*18;g.fillStyle=col+'33';g.strokeStyle=col;g.lineWidth=3;g.beginPath();g.arc(X(x),Y(y),rad,0,7);g.fill();g.stroke();
+    g.fillStyle=COL.text;g.font='600 22px "Instrument Sans", sans-serif';g.textAlign='left';g.fillText(n,X(x)+rad+12,Y(y)-6);g.fillStyle=col;g.font='700 17px "JetBrains Mono", monospace';g.fillText(tag.toUpperCase()+(cost>=1?' · $'+cost+'M':''),X(x)+rad+12,Y(y)+20)})}
+
+/* Q4 bridge */
+const BR=[['89.6',89.6,'base'],['+15.4',15.4],['+2.8',2.8],['+29.2',29.2],['+11.5',11.5],['+3.4',3.4],['−5.1',-5.1],['146.8',146.8,'end']];
+(function(){const el=$('bridge'),max=160;let run=0;el.innerHTML=BR.map(([l,v,k])=>{let bot,hgt,col;if(k){bot=0;hgt=v;col=k==='base'?'var(--slate)':'var(--amber)';run=k==='base'?v:run}else{bot=v>=0?run:run+v;hgt=Math.abs(v);col=v>=0?'var(--mint)':'var(--coral)';run+=v}
+  return `<div style="height:${hgt/max*100}%;margin-bottom:${bot/max*260}px;background:${col}"><span>${l}</span></div>`}).join('')})();
+// +3.4 bundles capacity (0.4) and ortho margin and indexation (3.0)
+
+/* Q5 gantt */
+function drawGantt(){const c=$('ganttChart'),g=c.getContext('2d'),w=c.width,h=c.height;g.clearRect(0,0,w,h);const l=330,r=w-40,t=60,rows=[
+ ['Validation sprint',[[0,2]],COL.amber],['Workforce: approval desk, vendor, float pool',[[0,18]],COL.mint],['Access center waves 1–4',[[4,6],[9,10],[12,13],[15,18]],COL.mint],['Ortho capacity, then referrer access',[[1,18]],COL.mint],['Revenue and spend integrity',[[2,18]],COL.mint],['Overhead and standard work',[[4,18]],COL.mint],['Length of stay: pilot, then scale',[[6,11],[11,18]],COL.mint],['Primary-care scribe cohorts',[[3,18]],COL.mint],['AI scheduling by clinic group',[[13,19]],COL.amber],['Second wave (payer, ED/OR)',[[9,18]],COL.amber]];
+  const rh=(h-t-60)/rows.length,X=m=>l+(r-l)*m/19;
+  g.font='500 20px "JetBrains Mono", monospace';g.textBaseline='middle';for(let m=0;m<=18;m+=3){g.strokeStyle=COL.line;g.beginPath();g.moveTo(X(m),t-10);g.lineTo(X(m),h-40);g.stroke();g.fillStyle=COL.muted;g.textAlign='center';g.fillText('M'+m,X(m),t-30)}
+  rows.forEach(([n,segs,col],i)=>{const y=t+i*rh+rh/2;g.fillStyle=COL.text;g.textAlign='left';g.font='500 21px "Instrument Sans", sans-serif';g.fillText(n,0,y);segs.forEach(([a,b2])=>{g.fillStyle=col;g.globalAlpha=.9;g.beginPath();g.roundRect(X(a),y-rh*.28,X(Math.min(19,b2))-X(a),rh*.56,8);g.fill();g.globalAlpha=1})});
+  [[2,'Re-base'],[9,'Second wave'],[12,'Board options'],[18,'Month 18']].forEach(([m,n])=>{const x=X(m);g.fillStyle=COL.amber;g.save();g.translate(x,h-28);g.rotate(Math.PI/4);g.fillRect(-9,-9,18,18);g.restore();g.font='700 18px "JetBrains Mono", monospace';g.textAlign='center';g.fillText(n,x,h-2)});
+}
+
+/* simulator (calibrated to the planning model) */
+const P_H12=[[0,3.92],[6,4.08],[9,4.71],[12,5.28],[15,5.83],[18,6.24],[21,6.55],[24,6.86],[27,7.04],[30,7.20],[36,7.31]],P_H1=[[0,3.92],[6,4.08],[9,4.72],[12,5.21],[15,5.66],[18,5.96],[21,6.14],[24,6.26],[27,6.28],[30,6.29],[36,6.29]],P_DN=[[0,3.92],[6,3.7],[12,3.4],[18,3.14],[24,2.87],[30,2.6],[36,2.3]],REV=[[0,2300],[18,2469.8],[24,2511.3],[30,2550.7],[36,2590]];
+const lerp=(pts,x)=>{if(x<=pts[0][0])return pts[0][1];for(let i=1;i<pts.length;i++){if(x<=pts[i][0]){const a=pts[i-1],b=pts[i];return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])}}const n=pts.length,a=pts[n-2],b=pts[n-1];return b[1]+(b[1]-a[1])*(x-b[0])/(b[0]-a[0])};
+const R=m=>lerp(REV,m);function Eb(m,e){const rate=e*0.6625;return m<=18?e*m/18:e+rate*(m-18)/12}
+const Ugross=m=>(m<=18?92-2.4*m/18:89.6-0.2*(m-18))+Eb(m,8),OP=(pts,m)=>lerp(pts,m)/100*R(m);
+const progBase=m=>OP(P_H12,m)-(Ugross(m)-Eb(m,8)),h1Base=m=>OP(P_H1,m)-(Ugross(m)-Eb(m,8));
+function payer(m){if(m<10)return 0;if(m<=18)return 4*(m-10)/8;if(m<=24)return 4;if(m<=30)return 4+3.9*(m-24)/6;return 7.9+0.15*(m-30)}
+const opts=m=>m<18?0:lerp([[18,0],[21,1.5],[24,4.5],[27,7.8],[30,10.2],[36,13.2]],m),ortho=m=>lerp([[0,0],[6,0.5],[12,3.5],[18,6.8],[24,11.5],[30,10.2],[36,6.7]],m);
+function scenario(s){const out=[];for(let m=0;m<=36;m+=0.5){const se=s.slip*(m<=18?1:Math.max(0.15,1-(m-18)/14)),ms=Math.max(0,m-se);const h1=Math.max(0,h1Base(ms)),prog=Math.max(0,progBase(ms));let v=(Ugross(m)-Eb(m,s.ero))+prog+0.8*h1*(s.bench-1)-(s.payer?0:payer(ms));if(s.opt)v+=opts(m);if(s.ortho)v+=ortho(ms);out.push([m,v/R(m)*100])}return out}
+function dnPath(s){const out=[];for(let m=0;m<=36;m+=0.5)out.push([m,lerp(P_DN,m)-(Eb(m,s.ero)-Eb(m,8))/R(m)*100]);return out}
+const first7=p=>{for(const[m,v]of p){if(m>0&&v>=7)return Math.ceil(m)}return null};
+const S={slip:0,bench:1,ero:8,payer:true,opt:false,ortho:false};
+const PRE={base:{slip:0,bench:1,ero:8,payer:true,opt:false,ortho:false},slip:{slip:3,bench:1,ero:8,payer:true,opt:false,ortho:false},bench:{slip:0,bench:.6,ero:8,payer:true,opt:true,ortho:false},erosion:{slip:0,bench:1,ero:15,payer:true,opt:true,ortho:false},payer:{slip:0,bench:1,ero:8,payer:false,opt:true,ortho:false},down:{slip:0,bench:.25,ero:15,payer:false,opt:false,ortho:false}};
+function syncUI(){$('kBench').value=Math.round(S.bench*100);$('kEro').value=S.ero;$('kSlip').value=S.slip;$('kPayer').checked=S.payer;$('kOpt').checked=S.opt;$('kOrtho').checked=S.ortho;$('vBench').textContent=Math.round(S.bench*100)+'%';$('vEro').textContent='$'+S.ero+'M';$('vSlip').textContent=S.slip+(S.slip===1?' month':' months')}
+function drawSim(){const c=$('simChart'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);const path=scenario(S),dn=dnPath(S),base=scenario(PRE.base);const l=90,r=w-130,t=60,b=h-80,X=m=>l+(r-l)*m/36,Y=v=>b-(b-t)*(v-2)/(8.5-2);
+  x.font='500 24px "JetBrains Mono", monospace';x.textBaseline='middle';for(let v=2;v<=8;v++){x.strokeStyle=COL.line;x.lineWidth=1;x.beginPath();x.moveTo(l,Y(v));x.lineTo(r,Y(v));x.stroke();x.fillStyle=COL.muted;x.textAlign='right';x.fillText(v+'%',l-14,Y(v))}
+  [0,6,12,18,24,30,36].forEach(m=>{x.fillStyle=COL.muted;x.textAlign='center';x.fillText('M'+m,X(m),b+36)});
+  x.setLineDash([12,9]);x.strokeStyle=COL.amber;x.lineWidth=2.5;x.beginPath();x.moveTo(l,Y(7));x.lineTo(r,Y(7));x.stroke();x.setLineDash([]);x.fillStyle=COL.amber;x.textAlign='left';x.fillText('7% target',l+12,Y(7)-22);
+  const ln=(pts,col,wd,dash)=>{x.setLineDash(dash||[]);x.strokeStyle=col;x.lineWidth=wd;x.lineJoin='round';x.beginPath();pts.forEach(([m,v],i)=>i?x.lineTo(X(m),Y(v)):x.moveTo(X(m),Y(v)));x.stroke();x.setLineDash([])};
+  ln(dn,COL.coral,4);ln(base,'#A3ADB9',3,[6,8]);ln(path,COL.mint,8);const e=path[path.length-1];x.fillStyle=COL.mint;x.beginPath();x.arc(X(e[0]),Y(e[1]),10,0,7);x.fill();x.textAlign='left';x.fillText(e[1].toFixed(1)+'%',r+12,Y(e[1]));const d=dn[dn.length-1];x.fillStyle=COL.coral;x.fillText(d[1].toFixed(1)+'%',r+12,Y(d[1]));
+  const m7=first7(path);if(m7){x.strokeStyle=COL.amber;x.lineWidth=4;x.beginPath();x.arc(X(m7),Y(7),18,0,7);x.stroke()}
+  $('rM18').textContent=lerp(path,18).toFixed(1)+'%';$('rM30').textContent=lerp(path,30).toFixed(1)+'%';const r7=$('r7');r7.textContent=m7?'M'+m7:'Not by M36';r7.className=m7?'hit':'miss'}
+document.querySelectorAll('#presets button').forEach(b=>b.addEventListener('click',()=>{Object.assign(S,PRE[b.dataset.p]);document.querySelectorAll('#presets button').forEach(q=>q.setAttribute('aria-pressed',q===b));syncUI();drawSim()}));
+const custom=()=>document.querySelectorAll('#presets button').forEach(q=>q.setAttribute('aria-pressed','false'));
+$('kBench').addEventListener('input',e=>{S.bench=e.target.value/100;custom();syncUI();drawSim()});$('kEro').addEventListener('input',e=>{S.ero=+e.target.value;custom();syncUI();drawSim()});$('kSlip').addEventListener('input',e=>{S.slip=+e.target.value;custom();syncUI();drawSim()});
+[['kPayer','payer'],['kOpt','opt'],['kOrtho','ortho']].forEach(([id,k])=>$(id).addEventListener('change',e=>{S[k]=e.target.checked;custom();drawSim()}));
+
+function all(){drawBE();drawAI();drawGantt();drawSim()}
+syncUI();all();onScroll();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(all);
+})();
+</script>
+</body></html>
